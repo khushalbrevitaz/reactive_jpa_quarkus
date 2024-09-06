@@ -4,7 +4,7 @@ import io.quarkus.hibernate.reactive.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "user_table_reactive")
+@Table(name = "user_table_reactive_docker")
 public class User extends PanacheEntityBase {
 
     @Id
@@ -43,6 +43,7 @@ public class User extends PanacheEntityBase {
     public void setEmail(String email) {
         this.email = email;
     }
+
 
     @Override
     public String toString() {

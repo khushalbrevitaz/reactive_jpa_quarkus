@@ -18,17 +18,17 @@ public class GreetingResource {
     @Inject
     UserService userService;
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/users")
-    public Uni<List<User>> getUser() {
-        return userService.getUser();
-    }
+//    @GET
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Path("/users")
+//    public Uni<List<User>> getUser() {
+//        return userService.getUser();
+//    }
 
     @GET
     @Path("/findOrCreate")
     @Produces(MediaType.APPLICATION_JSON)
-    public Uni<User> findOrCreateUser(@QueryParam("email") String email) {
+    public Uni<Void> findOrCreateUser(@QueryParam("email") String email) {
         return userService.findOrCreateUser(email);
     }
 }
