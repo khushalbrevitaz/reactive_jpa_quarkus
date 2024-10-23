@@ -4,12 +4,15 @@ import io.quarkus.hibernate.reactive.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "user_table_reactive_docker")
+@Table(name = "users")
 public class User extends PanacheEntityBase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) // Or GenerationType.AUTO if you want the database to handle it
     private Long id;
+
+    @Column
+    private String name;
 
     @Column(unique = true, nullable = false)
     private String email;
@@ -21,7 +24,7 @@ public class User extends PanacheEntityBase {
         this.email = email;
     }
 
-    public User(Long id,String email) {
+    public User(Long id, String email) {
         this.id = id;
 
         this.email = email;
@@ -44,6 +47,13 @@ public class User extends PanacheEntityBase {
         this.email = email;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     @Override
     public String toString() {

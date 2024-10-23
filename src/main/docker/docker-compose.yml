@@ -8,21 +8,28 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: mydatabase
       POSTGRES_USER: postgres
+      POSTGRES_MAX_CONNECTIONS: 200
     ports:
       - "5432:5432"
-
-
-  quarkus-app:
+  quarkus-reactive:
     build:
       context: ../../..
       dockerfile: src/main/docker/Dockerfile.jvm
-    container_name: quarkus-app
+    container_name: quarkus-reactive
     restart: always
+    volumes:
+      - /<PATH-TO SAMPLE.TXT FILE>/sample.txt:/deployments/sample.txt
     ports:
       - "8080:8080"
-    depends_on:
-      - db
+#    depends_on:
+#      - db
     environment:
-      QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://db:5432/mydatabase
+      QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://postgres-db:5432/mydatabase
       QUARKUS_DATASOURCE_USERNAME: postgres
       QUARKUS_DATASOURCE_PASSWORD: postgres
+      QUARKUS_DATASOURCE_REACTIVE_MAX_SIZE: 50
+      #QUARKUS_DATASOURCE_REACTIVE_MIN_SIZE: 20
+      #QUARKUS_DATASOURCE_JDBC_ACQUISITION_TIMEOUT: 30S
+networks:
+  java-research:
+    driver: bridge

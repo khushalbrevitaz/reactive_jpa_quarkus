@@ -1,0 +1,395 @@
+Copyright © 2017 by McGraw-Hill Education. All rights reserved. Except as permitted under the United
+States Copyright Act of 1976, no part of this publication may be reproduced or distributed in any form or
+by any means, or stored in a database or retrieval system, without the prior written permission of the
+publisher, with the exception that the program listings may be entered, stored, and executed in a computer
+system, but they may not be reproduced for publication.
+ISBN: 978-1-26-001138-8
+MHID: 1-26-001138-0.
+The material in this eBook also appears in the print version of this title: ISBN: 978-1-26-001136-4,
+MHID: 1-26-001136-4.
+eBook conversion by codeMantra
+Version 1.0
+All trademarks are trademarks of their respective owners. Rather than put a trademark symbol after every
+occurrence of a trademarked name, we use names in an editorial fashion only, and to the benefit of the
+trademark owner, with no intention of infringement of the trademark. Where such designations appear in
+this book, they have been printed with initial caps.
+McGraw-Hill Education eBooks are available at special quantity discounts to use as premiums and sales
+promotions or for use in corporate training programs. To contact a representative, please visit the Contact
+Us page at www.mhprofessional.com.
+Oracle and Java are registered trademarks of Oracle Corporation and/or its affiliates. All other
+trademarks are the property of their respective owners, and McGraw-Hill Education makes no claim of
+ownership by the mention of products that contain these marks.
+Screen displays of copyrighted Oracle software programs have been reproduced herein with the
+permission of Oracle Corporation and/or its affiliates.
+Oracle Corporation does not make any representations or warranties as to the accuracy, adequacy, or
+completeness of any information contained in this Work, and is not responsible for any errors or
+omissions.
+
+TERMS OF USE
+This is a copyrighted work and McGraw-Hill Education and its licensors reserve all rights in and to the
+work. Use of this work is subject to these terms. Except as permitted under the Copyright Act of 1976 and
+the right to store and retrieve one copy of the work, you may not decompile, disassemble, reverse
+engineer, reproduce, modify, create derivative works based upon, transmit, distribute, disseminate, sell,
+publish or sublicense the work or any part of it without McGraw-Hill Education’s prior consent. You may
+use the work for your own noncommercial and personal use; any other use of the work is strictly
+prohibited. Your right to use the work may be terminated if you fail to comply with these terms.
+THE WORK IS PROVIDED “AS IS.” McGRAW-HILL EDUCATION AND ITS LICENSORS MAKE
+NO GUARANTEES OR WARRANTIES AS TO THE ACCURACY, ADEQUACY OR
+COMPLETENESS OF OR RESULTS TO BE OBTAINED FROM USING THE WORK, INCLUDING
+ANY INFORMATION THAT CAN BE ACCESSED THROUGH THE WORK VIA HYPERLINK OR
+OTHERWISE, AND EXPRESSLY DISCLAIM ANY WARRANTY, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY OR
+FITNESS FOR A PARTICULAR PURPOSE. McGraw-Hill Education and its licensors do not warrant or
+guarantee that the functions contained in the work will meet your requirements or that its operation will be
+uninterrupted or error free. Neither McGraw-Hill Education nor its licensors shall be liable to you or
+anyone else for any inaccuracy, error or omission, regardless of cause, in the work or for any damages
+resulting therefrom. McGraw-Hill Education has no responsibility for the content of any information
+accessed through the work. Under no circumstances shall McGraw-Hill Education and/or its licensors be
+liable for any indirect, incidental, special, punitive, consequential or similar damages that result from the
+use of or inability to use the work, even if any of them has been advised of the possibility of such
+damages. This limitation of liability shall apply to any claim or cause whatsoever whether such claim or
+cause arises in contract, tort or otherwise.
+
+CONTRIBUTORS
+
+About the Authors
+Kathy Sierra was a lead developer for the SCJP exam for Java 5 and Java 6. Kathy worked as a Sun
+“master trainer,” and in 1997, founded JavaRanch.com (now named Coderanch.com), the world’s largest
+Java community website. Her bestselling Java books have won multiple Software Development
+Magazine awards, and she is a founding member of Oracle’s Java Champions program.
+These days, Kathy is developing advanced training programs in a variety of domains (from
+horsemanship to computer programming), but the thread that ties all her projects together is helping
+learners reduce cognitive load.
+Bert Bates was a lead developer for many of Sun’s Java certification exams, including the SCJP for Java
+5 and Java 6. Bert was also one of the lead developers for Oracle’s OCA 7 and OCP 7 exams and a
+contributor on Oracle’s OCA 8 and OCP 8 exams. He is a forum moderator on Coderanch.com (formerly
+JavaRanch.com) and has been developing software for more than 30 years (argh!). Bert is the co-author of
+several bestselling Java books, and he’s a founding member of Oracle’s Java Champions program. Now
+that the book is done, Bert plans to go whack a few tennis balls around and once again start riding his
+beautiful Icelandic horse, Eyrraros fra Gufudal-Fremri.
+
+About the Technical Review Team
+This is the fifth edition of the book that we’ve cooked up. The first version we worked on was for Java 2.
+Then we updated the book for the SCJP 5, again for the SCJP 6, again for the OCA 7 and OCP 7 exams,
+and now for the OCA 8. Every step of the way, we were unbelievably fortunate to have fantastic,
+JavaRanch.com-centric technical review teams at our sides. Over the course of the last 14 years, we’ve
+been “evolving” the book more than rewriting it. Many sections from our original work on the Java 2
+book are still intact. On the following pages, we’d like to acknowledge the members of the various
+technical review teams who have saved our bacon over the years.
+
+About the Java 2 Technical Review Team
+Johannes de Jong has been the leader of our technical review teams forever and ever. (He has more
+patience than any three people we know.) For the Java 2 book, he led our biggest team ever. Our sincere
+thanks go out to the following volunteers who were knowledgeable, diligent, patient, and picky, picky,
+picky!
+Rob Ross, Nicholas Cheung, Jane Griscti, Ilja Preuss, Vincent Brabant, Kudret Serin, Bill Seipel, Jing
+Yi, Ginu Jacob George, Radiya, LuAnn Mazza, Anshu Mishra, Anandhi Navaneethakrishnan, Didier
+Varon, Mary McCartney, Harsha Pherwani, Abhishek Misra, and Suman Das.
+
+About the SCJP 5 Technical Review Team
+
+We don’t know who burned the most midnight oil, but we can (and did) count everybody’s edits—so in
+order of most edits made, we proudly present our Superstars.
+Our top honors go to Kristin Stromberg—every time you see a semicolon used correctly, tip your hat
+to Kristin. Next up is Burk Hufnagel who fixed more code than we care to admit. Bill Mietelski and
+Gian Franco Casula caught every kind of error we threw at them—awesome job, guys! Devender
+Thareja made sure we didn’t use too much slang, and Mark Spritzler kept the humor coming. Mikalai
+Zaikin and Seema Manivannan made great catches every step of the way, and Marilyn de Queiroz and
+Valentin Crettaz both put in another stellar performance (saving our butts yet again).
+Marcelo Ortega, Jef Cumps (another veteran), Andrew Monkhouse, and Jeroen Sterken rounded out
+our crew of Superstars—thanks to you all. Jim Yingst was a member of the Sun exam creation team, and
+he helped us write and review some of the twistier questions in the book (bwa-ha-ha-ha).
+As always, every time you read a clean page, thank our reviewers, and if you do catch an error, it’s
+
+most certainly because your authors messed up. And oh, one last thanks to Johannes. You rule, dude!
+
+About the SCJP 6 Technical Review Team
+
+Since the upgrade to the Java 6 exam was like a small surgical strike we decided that the technical
+review team for this update to the book needed to be similarly fashioned. To that end we hand-picked an
+elite crew of JavaRanch’s top gurus to perform the review for the Java 6 exam.
+Our endless gratitude goes to Mikalai Zaikin. Mikalai played a huge role in the Java 5 book, and he
+returned to help us out again for this Java 6 edition. We need to thank Volha, Anastasia, and Daria for
+letting us borrow Mikalai. His comments and edits helped us make huge improvements to the book.
+Thanks, Mikalai!
+Marc Peabody gets special kudos for helping us out on a double header! In addition to helping us with
+Sun’s new SCWCD exam, Marc pitched in with a great set of edits for this book—you saved our bacon
+this winter, Marc! (BTW, we didn’t learn until late in the game that Marc, Bryan Basham, and Bert all
+share a passion for ultimate Frisbee!)
+
+Like several of our reviewers, not only does Fred Rosenberger volunteer copious amounts of his time
+moderating at JavaRanch, he also found time to help us out with this book. Stacey and Olivia, you have
+our thanks for loaning us Fred for a while.
+Marc Weber moderates at some of JavaRanch’s busiest forums. Marc knows his stuff and uncovered
+some really sneaky problems that were buried in the book. While we really appreciate Marc’s help, we
+need to warn you all to watch out—he’s got a Phaser!
+Finally, we send our thanks to Christophe Verre—if we can find him. It appears that Christophe
+performs his JavaRanch moderation duties from various locations around the globe, including France,
+Wales, and most recently Tokyo. On more than one occasion Christophe protected us from our own lack of
+organization. Thanks for your patience, Christophe! It’s important to know that these guys all donated their
+reviewer honorariums to JavaRanch! The JavaRanch community is in your debt.
+
+The OCA 7 and OCP 7 Team
+Contributing Authors
+
+The OCA 7 exam is primarily a useful repackaging of some of the objectives from the SCJP 6 exam. On
+the other hand, the OCP 7 exam introduced a vast array of brand-new topics. We enlisted several talented
+Java gurus to help us cover some of the new topics on the OCP 7 exam. Thanks and kudos to Tom
+McGinn for his fantastic work in creating the massive JDBC chapter. Several reviewers told us that Tom
+did an amazing job channeling the informal tone we use throughout the book. Next, thanks to Jeanne
+Boyarsky. Jeanne was truly a renaissance woman on this project. She contributed to several OCP
+chapters; she wrote some questions for the master exams; she performed some project management
+activities; and as if that wasn’t enough, she was one of our most energetic technical reviewers. Jeanne, we
+can’t thank you enough. Our thanks go to Matt Heimer for his excellent work on the Concurrent chapter.
+A really tough topic nicely handled! Finally, Roel De Nijs and Roberto Perillo made some nice
+contributions to the book and helped out on the technical review team—thanks, guys!
+
+Technical Review Team
+
+Roel, what can we say? Your work as a technical reviewer is unparalleled. Roel caught so many
+technical errors, it made our heads spin. Between the printed book and all the material on the CD, we
+estimate that there are over 1,500 pages of “stuff” here. It’s huge! Roel grinded through page after page,
+never lost his focus, and made this book better in countless ways. Thank you, Roel!
+In addition to her other contributions, Jeanne provided one of the most thorough technical reviews we
+received. (We think she enlisted her team of killer robots to help her!)
+It seems like no K&B book would be complete without help from our old friend Mikalai Zaikin.
+Somehow, between earning 812 different Java certifications, being a husband and father (thanks to Volha,
+Anastasia, Daria, and Ivan), and being a “theoretical fisherman” [sic], Mikalai made substantial
+contributions to the quality of the book; we’re honored that you helped us again, Mikalai.
+Next up, we’d like to thank Vijitha Kumara, JavaRanch moderator and tech reviewer extraordinaire.
+We had many reviewers help out during the long course of writing this book, but Vijitha was one of the
+few who stuck with us from Chapter 1 all the way through the master exams and on to Chapter 15. Vijitha,
+thank you for your help and persistence!
+Finally, thanks to the rest of our review team: Roberto Perillo (who also wrote some killer exam
+questions), Jim Yingst (was this your fourth time?), other repeat offenders: Fred Rosenberger,
+
+Christophe Verre, Devaka Cooray, Marc Peabody, and newcomer Amit Ghorpade—thanks, guys!
+
+About the OCA 8 Technical Review Team
+
+Due to “pilot error” on your authors’ part, the members of the review team for this book were asked to
+work under a tighter-than-ideal schedule. We owe a huge thanks to our six reviewers for this book, who
+leapt to action on short notice and once again made numerous fine contributions to the quality of the book.
+As has become “the norm,” all our reviewers are moderators at the finest Java community website in the
+whole universe, Coderanch.com.
+Our first mention goes to Campbell Ritchie, long-time Coderanch moderator, hiker of steep hills, and,
+by our count, most prolific reviewer for this edition. In other words, Campbell found the most errors.
+Among other pursuits, Campbell is an expert in both pathology and programming, because…why not?
+Every time you read an error-free page, think of Campbell and thank him.
+In a virtual tie for second place in the “errors found” competition, we present Paweł Baczyński and
+Fritz Walraven. Paweł calls Poland his home and is most proud of his wife, Ania, and kids, Szymek and
+
+Gabrysia. He is almost as proud of the fact that we have to use a special keyboard to spell his name
+correctly!
+Fritz hails from the Netherlands, and if we understand correctly, cheers his kids as they demonstrate
+their athletic prowess in various sports venues around Amersfoort. Fritz has also volunteered at an
+orphanage in Uganda (we hope he teaches those kids Java!). Fritz, if we ever meet in person, Bert hereby
+challenges you to a table tennis match.
+We’d like to give a special shout out to Fritz and Pawel for sticking with us from Chapter 1 all the way
+through to the second practice exam. It was a marathon, and we thank you both.
+Next, we’d like to thank returning reviewer Vijitha Kumara. That’s right, he’s helped us before and
+yet he volunteered again—wow! When Vijitha isn’t traveling or hiking, he enjoys what he refers to as
+“crazy experiments.” We love you, Vijitha—don’t blow yourself up!
+Tim Cooke was there when we needed him, at the beginning of the process and again to help us wrap
+things up. We like Tim even though he’s been known to spend time with nefarious “functional
+programmers.” (We suspect that’s where he was when he went missing for a few of the middle-of-thebook chapters.) Tim lives in Ireland and started programming at an early age on an Amstrad CPC 464.
+Nice!
+Finally, a special thanks to another veteran of the technical review team, Roberto Perillo. Thanks for
+coming back to help us again Roberto. Roberto is a family man who loves spending time with his son,
+Lorenzo. Once Lorenzo has gone to bed, Roberto is known to play a bit of guitar or cheer for the Sao
+Paulo “Futebol Clube” (we think this is a soccer team).
+You guys are all awesome. Thanks for your wonderful assistance.
+
+For Andi
+For Bob
+
+CONTENTS AT A GLANCE
+1 Declarations and Access Control
+2 Object Orientation
+3 Assignments
+4 Operators
+5 Flow Control and Exceptions
+6 Strings, Arrays, ArrayLists, Dates, and Lambdas
+A About the Download
+Index
+
+CONTENTS
+Acknowledgments
+Preface
+Introduction
+1 Declarations and Access Control
+Java Refresher
+Features and Benefits of Java (OCA Objective 1.5)
+Identifiers and Keywords (OCA Objectives 1.2 and 2.1)
+Legal Identifiers
+Oracle’s Java Code Conventions
+Define Classes (OCA Objectives 1.2, 1.3, 1.4, 6.4, and 7.5)
+Source File Declaration Rules
+Using the javac and java Commands
+Using public static void main(String[ ] args)
+Import Statements and the Java API
+Static Import Statements
+Class Declarations and Modifiers
+Exercise 1-1: Creating an Abstract Superclass and Concrete Subclass
+Use Interfaces (OCA Objective 7.5)
+Declaring an Interface
+Declaring Interface Constants
+Declaring default Interface Methods
+Declaring static Interface Methods
+Declare Class Members (OCA Objectives 2.1, 2.2, 2.3, 4.1, 4.2, 6.2, 6.3, and 6.4)
+Access Modifiers
+Nonaccess Member Modifiers
+Constructor Declarations
+Variable Declarations
+Declare and Use enums (OCA Objective 1.2)
+Declaring enums
+Certification Summary
+Two-Minute Drill
+Q&A Self Test
+Self Test Answers
+2 Object Orientation
+Encapsulation (OCA Objectives 6.1 and 6.5)
+
+Inheritance and Polymorphism (OCA Objectives 7.1 and 7.2)
+The Evolution of Inheritance
+IS-A and HAS-A Relationships
+Polymorphism (OCA Objective 7.2)
+Overriding/Overloading (OCA Objectives 6.1 and 7.2)
+Overridden Methods
+Overloaded Methods
+Casting (OCA Objectives 2.2 and 7.3)
+Implementing an Interface (OCA Objective 7.5)
+Java 8—Now with Multiple Inheritance!
+Legal Return Types (OCA Objectives 2.2 and 6.1)
+Return Type Declarations
+Returning a Value
+Constructors and Instantiation (OCA Objectives 6.3 and 7.4)
+Constructor Basics
+Constructor Chaining
+Rules for Constructors
+Determine Whether a Default Constructor Will Be Created
+Overloaded Constructors
+Initialization Blocks (OCA Objectives 1.2 and 6.3-ish)
+Statics (OCA Objective 6.2)
+Static Variables and Methods
+Certification Summary
+Two-Minute Drill
+Q&A Self Test
+Self Test Answers
+3 Assignments
+Stack and Heap—Quick Review
+Literals, Assignments, and Variables (OCA Objectives 2.1, 2.2, and 2.3)
+Literal Values for All Primitive Types
+Assignment Operators
+Exercise 3-1: Casting Primitives
+Scope (OCA Objective 1.1)
+Variable Scope
+Variable Initialization (OCA Objectives 2.1, 4.1, and 4.2)
+Using a Variable or Array Element That Is Uninitialized and Unassigned
+Local (Stack, Automatic) Primitives and Objects
+Passing Variables into Methods (OCA Objective 6.6)
+Passing Object Reference Variables
+Does Java Use Pass-By-Value Semantics?
+Passing Primitive Variables
+Garbage Collection (OCA Objective 2.4)
+
+Overview of Memory Management and Garbage Collection
+Overview of Java’s Garbage Collector
+Writing Code That Explicitly Makes Objects Eligible for Collection
+Exercise 3-2: Garbage Collection Experiment
+Certification Summary
+Two-Minute Drill
+Q&A Self Test
+Self Test Answers
+4 Operators
+Java Operators (OCA Objectives 3.1, 3.2, and 3.3)
+Assignment Operators
+Relational Operators
+instanceof Comparison
+Arithmetic Operators
+Conditional Operator
+Logical Operators
+Operator Precedence
+Certification Summary
+Two-Minute Drill
+Q&A Self Test
+Self Test Answers
+5 Flow Control and Exceptions
+Using if and switch Statements (OCA Objectives 3.3 and 3.4)
+if-else Branching
+switch Statements
+Exercise 5-1: Creating a switch-case Statement
+Creating Loops Constructs (OCA Objectives 5.1, 5.2, 5.3, 5.4, and 5.5)
+Using while Loops
+Using do Loops
+Using for Loops
+Using break and continue
+Unlabeled Statements
+Labeled Statements
+Exercise 5-2: Creating a Labeled while Loop
+Handling Exceptions (OCA Objectives 8.1, 8.2, 8.3, 8.4, and 8.5)
+Catching an Exception Using try and catch
+Using finally
+Propagating Uncaught Exceptions
+Exercise 5-3: Propagating and Catching an Exception
+Defining Exceptions
+Exception Hierarchy
+
+Handling an Entire Class Hierarchy of Exceptions
+Exception Matching
+Exception Declaration and the Public Interface
+Exercise 5-4: Creating an Exception
+Rethrowing the Same Exception
+Common Exceptions and Errors (OCA Objective 8.5)
+Where Exceptions Come From
+JVM-Thrown Exceptions
+Programmatically Thrown Exceptions
+A Summary of the Exam’s Exceptions and Errors
+Certification Summary
+Two-Minute Drill
+Q&A Self Test
+Self Test Answers
+6 Strings, Arrays, ArrayLists, Dates, and Lambdas
+Using String and StringBuilder (OCA Objectives 9.2 and 9.1)
+The String Class
+Important Facts About Strings and Memory
+Important Methods in the String Class
+The StringBuilder Class
+Important Methods in the StringBuilder Class
+Working with Calendar Data (OCA Objective 9.3)
+Immutability
+Factory Classes
+Using and Manipulating Dates and Times
+Formatting Dates and Times
+Using Arrays (OCA Objectives 4.1 and 4.2)
+Declaring an Array
+Constructing an Array
+Initializing an Array
+Using ArrayLists and Wrappers (OCA Objectives 9.4 and 2.5)
+When to Use ArrayLists
+ArrayList Methods in Action
+Important Methods in the ArrayList Class
+Autoboxing with ArrayLists
+The Java 7 “Diamond” Syntax
+Advanced Encapsulation (OCA Objective 6.5)
+Encapsulation for Reference Variables
+Using Simple Lambdas (OCA Objective 9.5)
+Certification Summary
+Two-Minute Drill
+Q&A Self Test
+
+Self Test Answers
+A About the Download
+System Requirements
+Downloading from McGraw-Hill Professional’s Media Center
+Installing the Practice Exam Software
+Running the Practice Exam Software
+Practice Exam Software Features
+Removing Installation
+Help
+Technical Support
+Windows 8 Troubleshooting
+McGraw-Hill Education Content Support
+Index
+
+ACKNOWLEDGMENTS

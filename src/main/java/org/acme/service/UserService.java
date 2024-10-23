@@ -2,28 +2,18 @@ package org.acme.service;
 
 import io.quarkus.hibernate.reactive.panache.Panache;
 import io.smallrye.mutiny.Uni;
-import io.vertx.mutiny.core.Vertx;
-import io.vertx.mutiny.pgclient.PgPool;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.acme.entity.User;
 import org.acme.repository.UserRepository;
 import org.hibernate.reactive.mutiny.Mutiny;
-import org.jboss.logging.Logger;
-
-import java.time.Duration;
-
-import static io.vertx.mutiny.pgclient.PgPool.client;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 @ApplicationScoped
 public class UserService {
-    private static final Logger LOG = Logger.getLogger(UserService.class);
-//    @Inject
-//    PgPool client;
-//
-//    @Inject
-//    Vertx vertx;
+    private static final Logger log = LoggerFactory.getLogger(UserService.class);
 
     @Inject
     UserRepository userRepository;
@@ -31,14 +21,26 @@ public class UserService {
     @Inject
     Mutiny.SessionFactory sessionFactory;
 
-    public Uni<User> findOrCreateUser(String email) {
-        LOG.info("Executing findOrCreateUser on thread: " + Thread.currentThread().getName());
+//    @PostConstruct
+//    public void checkConfigs() {
+//        String hibernateGeneration = ConfigProvider.getConfig().getValue("quarkus.hibernate-orm.database.generation", String.class);
+//        int maxPoolSize = ConfigProvider.getConfig().getValue("quarkus.datasource.reactive.max-size", Integer.class);
+//        long connectionTimeout = ConfigProvider.getConfig().getValue("quarkus.datasource.reactive.acquisition-timeout", Long.class);
+//        int retryAttempts = ConfigProvider.getConfig().getValue("quarkus.datasource.jdbc.acquire-retry-attempts", Integer.class);
+//
+//        log.info("---------- Hibernate Generation: {}",  hibernateGeneration);
+//        log.info("---------- Max Pool Size: {}", maxPoolSize);
+//        log.info("---------- Connection Timeout: {}",  connectionTimeout);
+//        log.info("---------- Acquire Retry Attempts: {}",  retryAttempts);
+//    }
 
+    public Uni<User> findOrCreateUser(String email) {
+        log.info("get or create user by email = {}", email);
         if (email == null || email.trim().isEmpty()) {
             throw new IllegalArgumentException("Email cannot be null or empty");
         }
-       return userRepository.findByEmail(email)
-               .onItem().ifNull().switchTo(() -> {
+        return userRepository.findByEmail(email)
+                .onItem().ifNull().switchTo(() -> {
                     // Ensure this operation stays in the reactive context
                     User newUser = new User(email);
                     return Panache.withTransaction(() -> userRepository.persist(newUser))
@@ -47,47 +49,13 @@ public class UserService {
 
     }
 
-
-
-    public Uni<Integer> invokeRandomSleepProcedure() {
-        var startTime = System.currentTimeMillis();
-        LOG.info("Invoking random_sleep stored procedure on thread: " + Thread.currentThread().getName());
+    public Uni<Integer> callStoredProcedureWithFakeDelay() {
+        log.info("calling fake_delay procedure");
         return sessionFactory.withSession(session ->
-                session.createNativeQuery("CALL random_sleep()")
-                        .executeUpdate());
-//                        .onItem().invoke(() -> {
-//                            // Calculate and log the time taken after the procedure is executed
-////                            var took = System.currentTimeMillis() - startTime;
-////                            LOG.info("Completed random_sleep stored procedure in non-blocking. Took " + took + " ms");
-//                        })
-//                        .replaceWithVoid());
-
-    }
-
-
-
-    public Uni<Integer> invokeSleepProcedure() {
-        var startTime = System.currentTimeMillis();
-        LOG.info("Invoking random_sleep stored procedure on thread: " + Thread.currentThread().getName());
-        return sessionFactory.withSession(session ->
-                session.createNativeQuery("CALL random_sleep()")
+                session.createNativeQuery("CALL fake_delay()")
                         .executeUpdate());
 
     }
-
-//    public Uni<Void> invokeRandomSleepProcedure() {
-//var startTime = System.currentTimeMillis();
-//    LOG.info("Invoking random_sleep stored procedure on thread: " + Thread.currentThread().getName());
-//    return client.preparedQuery("CALL random_sleep()")
-//        .execute()
-//        .onItem().invoke(() -> {
-//        // Calculate and log the time taken after the procedure is executed
-//        var took = System.currentTimeMillis() - startTime;
-//        LOG.info("Completed random_sleep stored procedure. Took " + took + " ms");
-//    })
-//            .replaceWithVoid();
-//
-//    }
 
 }
 
